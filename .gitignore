@@ -1,0 +1,83 @@
+############################
+# Python / Virtual Env
+############################
+312venv/
+venv/
+.env/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+############################
+# Airflow
+############################
+airflow_home/
+logs/
+airflow.db
+*.pid
+
+############################
+# OS / Editor
+############################
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+############################
+# Python Packaging
+############################
+build/
+dist/
+*.egg-info/
+
+############################
+# Jupyter (if used)
+############################
+.ipynb_checkpoints/
+
+############################
+# Secrets / credentials
+############################
+*.env
+*.pem
+*.key
+
+############################
+# Ignore everything else NOT explicitly allowed
+############################
+*
+
+############################
+# Allow ONLY these folders
+############################
+!dags/
+!data/
+!eval/
+!models/
+!scripts/
+!src/
+
+############################
+# Allow contents inside those folders
+############################
+!dags/**
+!data/**
+!eval/**
+!models/**
+!scripts/**
+!src/**
+
+############################
+# Allow root-level docs
+############################
+!README.md
+!LICENSE
+!requirements.txt
+!setup_airflow.sh
+
+############################
+# Keep .gitignore itself
+############################
+!.gitignore
