@@ -74,6 +74,7 @@ dist/
 !README.md
 !LICENSE
 !requirements.txt
+!requirements-consumer.txt
 !setup_airflow.sh
 !Dockerfile
 

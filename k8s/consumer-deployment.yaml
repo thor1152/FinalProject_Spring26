@@ -14,10 +14,14 @@ spec:
     spec:
       containers:
       - name: consumer
-        image: <YOUR_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/sqs-consumer:latest
+        image: 560852306721.dkr.ecr.us-east-1.amazonaws.com/sqs-consumer:latest
         imagePullPolicy: Always
         env:
         - name: QUEUE_URL
-          value: "https://sqs.us-east-1.amazonaws.com/<YOUR_ACCOUNT_ID>/<YOUR_QUEUE_NAME>"
+          value: "https://sqs.us-east-1.amazonaws.com/560852306721/MLOps-FinalProject-Spring26"
+        - name: BUCKET_NAME
+          value: "seis765-finalproject-560852306721-us-east-1-an"
         - name: MODEL_KEY
-          value: "models/<YOUR_MODEL_TIMESTAMP_PATH>/model.pkl"
+          value: "models/latest/model.pkl"
+        - name: REGION_NAME
+          value: "us-east-1"

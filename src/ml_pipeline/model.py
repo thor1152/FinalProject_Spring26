@@ -93,12 +93,15 @@ def promote_model(
     model_version = metadata["model_version"]
 
     s3_prefix = f"models/{model_version}"
+    latest_prefix = "models/latest"
     s3 = boto3.client("s3")
 
-    s3.upload_file(model_path, bucket_name, f"{s3_prefix}/model.pkl")
-    s3.upload_file(metrics_path, bucket_name, f"{s3_prefix}/metrics.json")
-    s3.upload_file(metadata_path, bucket_name, f"{s3_prefix}/metadata.json")
+    for prefix in (s3_prefix, latest_prefix):
+        s3.upload_file(model_path, bucket_name, f"{prefix}/model.pkl")
+        s3.upload_file(metrics_path, bucket_name, f"{prefix}/metrics.json")
+        s3.upload_file(metadata_path, bucket_name, f"{prefix}/metadata.json")
 
     print(f"[ml_pipeline.bc_model] Promoted model to s3://{bucket_name}/{s3_prefix}/")
+    print(f"[ml_pipeline.bc_model] Updated latest model at s3://{bucket_name}/{latest_prefix}/")
 
     return f"s3://{bucket_name}/{s3_prefix}/"
