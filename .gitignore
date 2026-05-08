@@ -58,6 +58,7 @@ dist/
 !models/
 !scripts/
 !src/
+!k8s
 
 ############################
 # Allow contents inside those folders
@@ -65,6 +66,7 @@ dist/
 !dags/**
 !scripts/**
 !src/**
+!k8s/**
 
 ############################
 # Allow root-level docs
@@ -73,6 +75,7 @@ dist/
 !LICENSE
 !requirements.txt
 !setup_airflow.sh
+!Dockerfile
 
 ############################
 # Keep .gitignore itself
