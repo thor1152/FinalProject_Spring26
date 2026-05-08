@@ -4,7 +4,7 @@ import pandas as pd
 
 def populate_sqs_queue(
     test_data_path: str = "data/test_data.csv", 
-    queue_url: str = "YOUR_SQS_QUEUE_URL"
+    queue_url: str = "https://sqs.us-east-1.amazonaws.com/560852306721/MLOps-FinalProject-Spring26"
 ) -> int:
     """Reads the saved test data and sends individual records to SQS."""
     
