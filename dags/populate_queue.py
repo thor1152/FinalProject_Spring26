@@ -22,7 +22,7 @@ with DAG(
     def populate_queue_wrapper():
         # IMPORTANT: Replace the queue_url with your actual SQS URL from the AWS Console
         return populate_sqs_queue(
-            data_path="data/breast_cancer.csv",
+            test_data_path="data/test_data.csv",
             queue_url="https://sqs.us-east-1.amazonaws.com/560852306721/MLOps-FinalProject-Spring26" 
         )
 
