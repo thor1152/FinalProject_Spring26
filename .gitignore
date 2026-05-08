@@ -63,9 +63,6 @@ dist/
 # Allow contents inside those folders
 ############################
 !dags/**
-!data/**
-!eval/**
-!models/**
 !scripts/**
 !src/**
 
