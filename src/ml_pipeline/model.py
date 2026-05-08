@@ -14,7 +14,8 @@ def train_model(
     df: pd.DataFrame, 
     model_path: str = "models/breast_cancer_model.pkl", 
     metrics_path: str = "eval/breast_cancer_metrics.json",
-    metadata_path: str = "models/breast_cancer_metadata.json"
+    metadata_path: str = "models/breast_cancer_metadata.json",
+    test_data_path: str = "data/test_data.csv"
     ) -> float:
     """Train a logistic regression classifier and save it."""
     X = df.drop(columns=["target"])
@@ -27,6 +28,10 @@ def train_model(
         random_state=42,
         stratify=y
     )
+
+    os.makedirs(os.path.dirname(test_data_path), exist_ok=True)
+    X_test.to_csv(test_data_path, index=False)
+    print(f"[ml_pipeline.model] Saved test data to {test_data_path}")
 
     pipeline = Pipeline([
         ("scaler", StandardScaler()),
