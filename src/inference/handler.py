@@ -5,7 +5,7 @@ import logging
 import pandas as pd
 from datetime import datetime, timezone
 from src.inference.settings import settings
-from src.inference.schemas import InferenceMessage, InferenceResult
+from src.inference.schema import InferenceMessage, InferenceResult
 
 logger = logging.getLogger(__name__)
 

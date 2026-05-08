@@ -125,7 +125,7 @@ def create_app(
         return metadata
 
     @app.post("/predict")
-    def predict(request: BreastCancerRequest_bc):
+    def predict(request: BreastCancerRequest):
         # Convert request into the correct shape (1 x 30)
         X = pd.DataFrame([{
             "mean_radius": request.mean_radius,
