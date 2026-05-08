@@ -38,7 +38,7 @@ with DAG(
         task_id="promote_model",
         python_callable=promote_model_wrapper,
         op_kwargs={
-            "bucket_name": "seis765-hmwrk3-343584798213-us-east-1-an",
+            "bucket_name": "seis765-finalproject-560852306721-us-east-1-an",
             "model_path": "models/breast_cancer_model.pkl",
             "metrics_path": "eval/breast_cancer_metrics.json",
             "metadata_path": "models/breast_cancer_metadata.json",

@@ -64,7 +64,7 @@ def train_model(
     return acc
 
 def promote_model(
-    bucket_name: str,
+    bucket_name: str = "seis765-finalproject-560852306721-us-east-1-an", 
     model_path: str = "models/breast_cancer_model.pkl",
     metrics_path: str = "eval/breast_cancer_metrics.json",
     metadata_path: str = "models/breast_cancer_metadata.json",
