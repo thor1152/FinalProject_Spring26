@@ -42,12 +42,13 @@ class InferenceHandler:
             pred = int(self.model.predict(df)[0])
 
             result = InferenceResult(
+                batch_id=msg.batch_id,
                 record_id=msg.record_id,
                 prediction=pred,
                 timestamp=datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
             )
 
-            result_key = f"predictions/{msg.record_id}.json"
+            result_key = f"predictions/{msg.batch_id}_{msg.record_id}.json"
             self.s3_client.put_object(
                 Bucket=settings.bucket_name,
                 Key=result_key,

@@ -1,6 +1,7 @@
 import json
 import boto3
 import pandas as pd
+from datetime import datetime, timezone
 
 def populate_sqs_queue(
     test_data_path: str = "data/test_data.csv", 
@@ -14,10 +15,12 @@ def populate_sqs_queue(
     # 2. Initialize the SQS client
     sqs = boto3.client("sqs", region_name="us-east-1")
     messages_sent = 0
+    batch_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
     # 3. Iterate and send
     for index, row in X_test.iterrows():
         message_body = {
+            "batch_id": batch_id,
             "record_id": f"sample_{index:03d}",
             "features": row.tolist()
         }
