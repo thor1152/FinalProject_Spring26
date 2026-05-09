@@ -3,11 +3,9 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime
 import sys, os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "../scripts"))
 sys.path.append(os.path.join(os.path.dirname(__file__), "../src"))
 
-from ml_pipeline.data import load_data
-from generate_data import generate_data
+from ml_pipeline.data import generate_data, load_data
 from ml_pipeline.model import train_model, promote_model
 
 default_args = {"owner": "airflow", "retries": 1}

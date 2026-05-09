@@ -3,8 +3,8 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime
 import sys, os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "../scripts"))
-from generate_data import generate_data
+sys.path.append(os.path.join(os.path.dirname(__file__), "../src"))
+from ml_pipeline.data import generate_data
 
 default_args = {"owner": "airflow", "retries": 1}
 
