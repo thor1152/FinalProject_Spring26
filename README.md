@@ -153,11 +153,33 @@ Scale back to one replica:
 kubectl scale deployment/ml-sqs-consumer --replicas=1
 ```
 
-## Kubernetes AWS Access
+## Kubernetes AWS Credentials
 
-The consumer uses `boto3` to access SQS and S3 from inside the Kubernetes pod. In the lab environment, AWS access is provided by the configured EKS runtime permissions for the cluster and deployment.
+The consumer uses `boto3`, so the pod needs AWS credentials to access S3 and SQS. The Kubernetes YAML provides the resource locations, but the pod still needs credentials for AWS API calls.
 
 The deployment passes resource locations through environment variables in `k8s/consumer-deployment.yaml`, including the SQS queue URL, S3 bucket name, model key, and AWS region.
+
+In the lab environment, create a temporary Kubernetes secret from the current AWS credentials:
+
+```bash
+aws configure export-credentials --format env
+```
+
+Run the printed `export` commands, then:
+
+```bash
+kubectl delete secret aws-creds --ignore-not-found
+
+kubectl create secret generic aws-creds \
+  --from-literal=AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" \
+  --from-literal=AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY" \
+  --from-literal=AWS_SESSION_TOKEN="$AWS_SESSION_TOKEN"
+
+kubectl set env deployment/ml-sqs-consumer --from=secret/aws-creds
+kubectl rollout restart deployment/ml-sqs-consumer
+```
+
+These credentials expire when the lab session expires or restarts. Recreate the secret after a lab restart.
 
 ## Message Format
 
@@ -238,6 +260,8 @@ If the consumer pod crashes, check the pod logs first:
 ```bash
 kubectl logs deployment/ml-sqs-consumer --tail=100
 ```
+
+If the consumer pod crashes with `NoCredentialsError`, recreate the `aws-creds` secret and restart the deployment.
 
 If the consumer pod crashes with S3 `404 Not Found`, confirm the model exists:
 
