@@ -61,12 +61,6 @@ source ./setup_airflow.sh
 airflow scheduler
 ```
 
-If port `8793` is already in use, stop stale Airflow processes or set another log server port:
-
-```bash
-export AIRFLOW__LOGGING__WORKER_LOG_SERVER_PORT=8794
-```
-
 ## Airflow DAGs
 
 Run these DAGs in order:
@@ -120,7 +114,7 @@ docker push 560852306721.dkr.ecr.us-east-1.amazonaws.com/sqs-consumer:latest
 
 ## Kubernetes Deployment
 
-Connect to the EKS cluster:
+Connect to the EKS cluster in cloudshell:
 
 ```bash
 source kubectl-connect mlops_final_project_spring26
@@ -213,12 +207,6 @@ Use unique S3 keys to avoid overwriting predictions across multiple DAG runs:
 predictions/20260509T053000Z_sample_001.json
 ```
 
-For example:
-
-```text
-predictions/20260509T053000Z_sample_001.json
-```
-
 ## Verification Commands
 
 Check promoted model artifacts:
@@ -255,7 +243,7 @@ aws s3 cp s3://seis765-finalproject-560852306721-us-east-1-an/predictions/202605
 
 ## Troubleshooting
 
-If the consumer pod crashes, check the pod logs first:
+If the consumer pod crashes, check the pod logs in cloudshell first:
 
 ```bash
 kubectl logs deployment/ml-sqs-consumer --tail=100
