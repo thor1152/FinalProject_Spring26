@@ -1,5 +1,7 @@
 # FinalProject Spring 2026
 
+## https://github.com/thor1152/FinalProject_Spring26
+
 This project builds an end-to-end ML inference pipeline for the breast cancer dataset using Airflow, S3, SQS, Docker, and Kubernetes.
 
 ## Architecture
