@@ -58,7 +58,8 @@ dist/
 !models/
 !scripts/
 !src/
-!k8s
+!k8s/
+!sqs/
 
 ############################
 # Allow contents inside those folders
@@ -67,6 +68,7 @@ dist/
 !scripts/**
 !src/**
 !k8s/**
+!sqs/**
 
 ############################
 # Allow root-level docs
