@@ -101,7 +101,7 @@ def promote_model(
         s3.upload_file(metrics_path, bucket_name, f"{prefix}/metrics.json")
         s3.upload_file(metadata_path, bucket_name, f"{prefix}/metadata.json")
 
-    print(f"[ml_pipeline.bc_model] Promoted model to s3://{bucket_name}/{s3_prefix}/")
-    print(f"[ml_pipeline.bc_model] Updated latest model at s3://{bucket_name}/{latest_prefix}/")
+    print(f"[ml_pipeline.model] Promoted model to s3://{bucket_name}/{s3_prefix}/")
+    print(f"[ml_pipeline.model] Updated latest model at s3://{bucket_name}/{latest_prefix}/")
 
     return f"s3://{bucket_name}/{s3_prefix}/"
