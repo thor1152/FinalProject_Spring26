@@ -88,10 +88,10 @@ It creates:
 - `eval/breast_cancer_metrics.json`
 - `models/breast_cancer_metadata.json`
 
-It promotes model artifacts to S3 under:
+It promotes model artifacts to S3 under a versioned path and the stable latest path:
 
 ```text
-models/<model_version>/
+models/20260509_053000/
 models/latest/
 ```
 
@@ -208,7 +208,7 @@ Each prediction is written to S3 as a separate JSON file:
 Use unique S3 keys to avoid overwriting predictions across multiple DAG runs:
 
 ```text
-predictions/<batch_id>_<record_id>.json
+predictions/20260509T053000Z_sample_001.json
 ```
 
 For example:
@@ -248,7 +248,7 @@ aws s3 ls s3://seis765-finalproject-560852306721-us-east-1-an/predictions/ | wc 
 View one prediction:
 
 ```bash
-aws s3 cp s3://seis765-finalproject-560852306721-us-east-1-an/predictions/sample_001.json -
+aws s3 cp s3://seis765-finalproject-560852306721-us-east-1-an/predictions/20260509T053000Z_sample_001.json -
 ```
 
 ## Troubleshooting
@@ -276,4 +276,3 @@ aws eks create-addon --region us-east-1 --cluster-name mlops_final_project_sprin
 aws eks create-addon --region us-east-1 --cluster-name mlops_final_project_spring26 --addon-name kube-proxy
 aws eks create-addon --region us-east-1 --cluster-name mlops_final_project_spring26 --addon-name coredns
 ```
-
